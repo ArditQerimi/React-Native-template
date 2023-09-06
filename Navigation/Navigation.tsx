@@ -1,15 +1,14 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
-// import {useAuth} from './Screens/Context';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Button, Text, View} from 'react-native';
-// import Quiz from './components/Quiz';
 import {StackNavigationProp} from '@react-navigation/stack';
+import Table from '../components/Table.component';
+import Table2Component from '../components/Table2.component';
 
 const CategoriesScreen = () => {
   return (
@@ -68,15 +67,26 @@ const MenuScreen = () => {
 const Stack = createStackNavigator();
 
 const HomeScreen = () => {
-  const navigation = useNavigation<StackNavigationProp<any>>();
+  // Define the handleInvite and handleDelete functions
+  const handleInvite = record => {
+    // Do something with the data when the Invite button is clicked
+    console.log(`Invite button clicked for ${record.name}`);
+  };
+
+  const handleDelete = key => {
+    // Do something with the data when the Delete button is clicked
+    console.log(`Delete button clicked for item with key ${key}`);
+  };
+
   return (
-    <View>
-      <Text>Home screen</Text>
-      <Button
-        onPress={() => navigation.navigate('CategoriesScreen')}
-        title={'Go to quiz'}
+    <>
+      <Text>Your Parent Component</Text>
+      {/* Pass the functions as props to the Table component */}
+      <Table2Component
+        handleInvite={handleInvite}
+        handleDelete={handleDelete}
       />
-    </View>
+    </>
   );
 };
 
